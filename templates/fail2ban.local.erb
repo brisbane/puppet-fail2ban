@@ -1,5 +1,5 @@
 [Definition]
-loglevel = <%= scope.lookupvar('fail2ban::log_level') %>
-logtarget = <%= scope.lookupvar('fail2ban::log_file') %>
-socket = <%= scope.lookupvar('fail2ban::socket') %>
-pidfile = <%= scope.lookupvar('fail2ban::pid_file') %>
+loglevel = <%= scope.lookupvar('fail2ban::params::log_level') %>
+logtarget = <%= scope.lookupvar('fail2ban::params::log_file') %>
+socket = <%= scope.lookupvar('fail2ban::params::socket') %>
+pidfile = <%= scope.lookupvar('fail2ban::params::pid_file') %>

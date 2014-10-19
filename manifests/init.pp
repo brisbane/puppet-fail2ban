@@ -26,9 +26,14 @@
 # Copyright 2014 Alessandro De Salvo
 #
 class fail2ban (
-  $jails = [],
-  $mailto = undef
+  $jails = $fail2ban::params::jails,
+  $mailto = undef,
+ $maxretry=$fail2ban::params::maxretry,
+ $ignoreip=$fail2ban::params::ignoreip
 ) inherits params {
+
+
+
     file { $fail2ban::params::config_file:
         owner   => root,
         group   => root,

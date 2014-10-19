@@ -40,12 +40,13 @@ class fail2ban::params {
 
   $ignoreip = ['127.0.0.1/8']
   $bantime = '600'
-  $findtime = '600'
-  $maxretry = '5'
+  $findtime = hiera("fail2ban::params::findtime",'600')
+  $maxretry = hiera("fail2ban::params::maxretry",10)
   $backend = 'auto'
-  $mailto = "hostmaster@${::domain}"
   $banaction = 'iptables-multiport'
   $mta = 'sendmail'
   $jails_protocol = 'tcp'
   $jails_chain = 'INPUT'
+  $jails = hiera("fail2ban::params::jails", ['ssh'] )
+  $mailto = hiera("fail2ban::params::mailto , 'root@localhost')
 }
