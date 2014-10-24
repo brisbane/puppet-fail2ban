@@ -26,10 +26,11 @@
 # Copyright 2014 Alessandro De Salvo
 #
 class fail2ban (
-  $jails = $fail2ban::params::jails,
-  $mailto = undef,
- $maxretry=$fail2ban::params::maxretry,
- $ignoreip=$fail2ban::params::ignoreip
+ $jails = $fail2ban::params::jails,
+ $mailto = $fail2ban::params::mailto,
+ $maxretry = $fail2ban::params::maxretry,
+ $findtime = $fail2ban::params::findtime,
+ $ignoreip = $fail2ban::params::ignoreip
 ) inherits params {
 
 

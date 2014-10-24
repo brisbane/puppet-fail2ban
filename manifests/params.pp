@@ -38,7 +38,7 @@ class fail2ban::params {
   $log_level = '3'
   $socket = '/var/run/fail2ban/fail2ban.sock'
 
-  $ignoreip = ['127.0.0.1/8']
+  $ignoreip = hiera_array("fail2ban::params::ignoreip" ,['127.0.0.1/8'])
   $bantime = '600'
   $findtime = hiera("fail2ban::params::findtime",'600')
   $maxretry = hiera("fail2ban::params::maxretry",10)
@@ -48,5 +48,5 @@ class fail2ban::params {
   $jails_protocol = 'tcp'
   $jails_chain = 'INPUT'
   $jails = hiera("fail2ban::params::jails", ['ssh'] )
-  $mailto = hiera("fail2ban::params::mailto , 'root@localhost')
+  $mailto = hiera("fail2ban::params::mailto" , 'root@localhost')
 }

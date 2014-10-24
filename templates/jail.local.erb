@@ -1,7 +1,7 @@
 [DEFAULT]
-ignoreip = <%= scope.lookupvar('fail2ban::params::ignoreip') %>
+ignoreip = <% ignoreip.each do |inip| %><%= inip %> <%  end %>
 bantime = <%= scope.lookupvar('fail2ban::params::bantime') %>
-findtime = <%= scope.lookupvar('fail2ban:params::findtime') %>
+findtime = <%= scope.lookupvar('fail2ban::params::findtime') %>
 maxretry = <%= scope.lookupvar('fail2ban::params::maxretry') %>
 backend = <%= scope.lookupvar('fail2ban::params::backend') %>
 
@@ -10,6 +10,7 @@ enabled = <%= scope.lookupvar('fail2ban::params::jails').include? "imap" %>
 filter = dovecot
 action = iptables[name=IMAP, port=imap, protocol=tcp]
            sendmail-whois[name=POP3, dest=<%= scope.lookupvar('fail2ban::params::mailto') %>, sender=fail2ban@<%= @fqdn %>]
+maxretry = <%= scope.lookupvar('fail2ban::params::maxretry') %>
 logpath = /var/log/maillog
 
 [pop3-iptables]
@@ -17,6 +18,7 @@ enabled = <%= scope.lookupvar('fail2ban::params::jails').include? "pop3" %>
 filter = mail
 action = iptables[name=POP3, port=pop3, protocol=tcp]
            sendmail-whois[name=POP3, dest=<%= scope.lookupvar('fail2ban::params::mailto') %>, sender=fail2ban@<%= @fqdn %>]
+maxretry = <%= scope.lookupvar('fail2ban::params::maxretry') %>
 logpath = /var/log/maillog
 
 [ssh-iptables]
@@ -24,6 +26,7 @@ enabled = <%= scope.lookupvar('fail2ban::params::jails').include? "ssh" %>
 filter = sshd
 action = iptables[name=SSH, port=ssh, protocol=tcp]
            sendmail-whois[name=SSH, dest=<%= scope.lookupvar('fail2ban::params::mailto') %>, sender=fail2ban@<%= @fqdn %>]
+maxretry = <%= scope.lookupvar('fail2ban::params::maxretry') %>
 <% if @operatingsystem == "Debian" -%>
 logpath = /var/log/auth.log
 <% else -%>
@@ -35,5 +38,6 @@ enabled = <%= scope.lookupvar('fail2ban::params::jails').include? "vsftpd" %>
 filter = vsftpd
 action = iptables[name=VSFTPD, port=ftp, protocol=tcp]
            sendmail-whois[name=VSFTPD, dest=<%= scope.lookupvar('fail2ban::prams::mailto') %>, sender=fail2ban@<%= @fqdn %>]
+maxretry = <%= scope.lookupvar('fail2ban::params::maxretry') %>
 logpath = /var/log/vsftpd.log
 bantime = 1800
