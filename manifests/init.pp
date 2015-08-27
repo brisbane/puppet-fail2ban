@@ -30,7 +30,8 @@ class fail2ban (
  $mailto = $fail2ban::params::mailto,
  $maxretry = $fail2ban::params::maxretry,
  $findtime = $fail2ban::params::findtime,
- $ignoreip = $fail2ban::params::ignoreip
+ $ignoreip = $fail2ban::params::ignoreip,
+ $log_level = $fail2ban::params::log_level
 ) inherits params {
 
 
@@ -38,7 +39,7 @@ class fail2ban (
     file { $fail2ban::params::config_file:
         owner   => root,
         group   => root,
-        mode    => 644,
+        mode    => 0644,
         content => template('fail2ban/fail2ban.local.erb'),
         require => Package[$fail2ban::params::package],
         notify  => Service[$fail2ban::params::service]
@@ -46,7 +47,7 @@ class fail2ban (
     file { $fail2ban::params::jail_file:
         owner   => root,
         group   => root,
-        mode    => 644,
+        mode    => 0644,
         content => template('fail2ban/jail.local.erb'),
         require => Package[$fail2ban::params::package],
         notify  => Service[$fail2ban::params::service]
