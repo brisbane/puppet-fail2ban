@@ -1,0 +1,26 @@
+{
+  "version": "0.1.0",
+  "source": "https://github.com/desalvo/puppet-fail2ban",
+  "description": "Puppet module for fail2ban configuration",
+  "project_page": "https://github.com/desalvo/puppet-fail2ban",
+  "author": "desalvo",
+  "dependencies": [
+
+  ],
+  "summary": "Puppet module for fail2ban",
+  "checksums": {
+    "manifests/params.pp": "5ecda5e4862aa67998bada6188a611bd",
+    "templates/fail2ban.local.erb": "ed48d01637a346091f9b14099a78ac8b",
+    "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+    "templates/jail.local.erb": "870ed38bc27796cd892698f2248bcdff",
+    "Modulefile": "5139d0b436362ac16baefefc16a52188",
+    "tests/init.pp": "641477fd63a9569d2ffddc04c34dd005",
+    "manifests/init.pp": "7d0d1fb9e2cdff085bdb8ccb0b302176",
+    "README.md": "bb85ed063aeae837fe31f70d058bb78f"
+  },
+  "name": "desalvo-fail2ban",
+  "types": [
+
+  ],
+  "license": "Apache License, Version 2.0"
+}
